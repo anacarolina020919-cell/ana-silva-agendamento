@@ -1,94 +1,285 @@
 <!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ana Silva | Lash Designer • Cabeleireira</title>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Painel Ana Silva</title>
 <style>
-:root{--pink:#e99daf;--rose:#c85d79;--dark:#120c0d;--cream:#fff6f8;--ink:#2b1a20}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;background:var(--cream);color:var(--ink)}
-header{position:sticky;top:0;z-index:20;background:#120c0df5;color:#fff;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{font:italic 30px Georgia;color:#f3a7b8}.logo small{display:block;font:9px Arial;letter-spacing:3px;color:#fff;text-align:center}nav a{color:#fff;text-decoration:none;margin:0 9px;font-size:14px}.btn{border:0;border-radius:30px;padding:13px 20px;background:var(--pink);color:#211116;font-weight:700;cursor:pointer;text-decoration:none}
-.hero{min-height:560px;padding:70px 7%;display:flex;align-items:center;background:radial-gradient(circle at 78% 45%,#303030,#100b0c 48%,#080606);color:#fff}.copy{width:55%}.eyebrow{color:#efa8b8;letter-spacing:4px;font-size:12px}.hero h1{font:italic 78px Georgia;color:#f2a5b7;margin:18px 0}.hero h2{font-weight:400;font-size:28px}.hero p{font-size:19px;line-height:1.5}.portrait{width:45%;height:470px;border-radius:250px 250px 20px 20px;background:linear-gradient(145deg,#292929,#050505);display:flex;align-items:center;justify-content:center}.portrait span{font:italic 100px Georgia;color:#f2a5b7}
-section{padding:65px 6%}.title{text-align:center;font:italic 42px Georgia;margin:0 0 8px}.sub{text-align:center;margin:0 0 32px}.services{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:#f8dce3;border:1px solid #efc4cf;border-radius:18px;padding:25px;text-align:center}.price{font-weight:bold;color:var(--rose)}
-.booking{background:linear-gradient(135deg,#f3c2ce,#f9e1e6);border-radius:28px;padding:38px;display:grid;grid-template-columns:1fr 1.6fr;gap:35px}.booking h2{font:italic 45px Georgia;margin:0}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form input,.form select{width:100%;padding:14px;border:1px solid #ddb3be;border-radius:11px;background:#fff}.full{grid-column:1/-1}.status{padding:12px;border-radius:10px;background:#fff4f6;font-size:13px;display:none}.benefits{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}.benefits div{padding:20px}.benefits strong{display:block;margin-top:9px}footer{background:var(--dark);color:#fff;text-align:center;padding:42px}
-@media(max-width:800px){nav{display:none}.hero{display:block;padding:45px 6%}.copy,.portrait{width:100%}.hero h1{font-size:58px}.portrait{height:330px;margin-top:30px}.services,.benefits{grid-template-columns:1fr 1fr}.booking{grid-template-columns:1fr;padding:25px}}@media(max-width:500px){.services,.benefits{grid-template-columns:1fr}.title{font-size:34px}}
+body{font-family:Arial;margin:0;background:#fff6f8;color:#2b1a20}.wrap{max-width:1100px;margin:auto;padding:25px}.box{background:#fff;padding:22px;border-radius:18px;margin:16px 0;box-shadow:0 5px 25px #0001}input,select,button{padding:11px;border:1px solid #dcb5bf;border-radius:9px}button{background:#c85d79;color:#fff;border:0;cursor:pointer}.grid{display:grid;grid-template-columns:2fr 1fr 1fr 2fr auto;gap:8px;margin:8px 0}.day{display:grid;grid-template-columns:120px 1fr 1fr auto;gap:8px;margin:8px 0}.booking{padding:11px;border-bottom:1px solid #eee}@media(max-width:700px){.grid,.day{grid-template-columns:1fr}}
 </style>
-</head>
-<body>
-<header><div class="logo">Ana Silva<small>LASH DESIGNER • CABELEIREIRA</small></div><nav><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#agendamento">Agendamento</a><a href="#contato">Contato</a></nav><a class="btn" href="#agendamento">Agendar horário</a></header>
+<style>
+.help{background:#fff8fa;border:1px solid #e9cbd3}.help details{padding:10px;border-bottom:1px solid #ead5da}.help summary{cursor:pointer;font-weight:bold}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.msg-ok{color:#267044}.msg-err{color:#a52f49}.danger{background:#9d3f5c}.muted{color:#725d63}
+</style>
 
-<section id="inicio" class="hero"><div class="copy"><div class="eyebrow">BELEZA • AUTOESTIMA • CONFIANÇA</div><h1>Ana Silva</h1><h2>Lash Designer • Cabeleireira</h2><p>Realce ainda mais a sua beleza natural com atendimento personalizado.</p><a class="btn" href="#agendamento">Agendar meu horário</a></div><div class="portrait"><span>AS</span></div></section>
+<style id="agenda-calendar-style">
+.agenda-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:18px}
+.agenda-toolbar .left,.agenda-toolbar .right{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.agenda-toolbar button,.agenda-toolbar select{padding:10px 13px;border:1px solid #dcb5bf;border-radius:9px;background:#fff;cursor:pointer}
+.agenda-title{font:italic 28px Georgia;margin:0}
+.agenda-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.agenda-stat{background:#fff6f8;border:1px solid #efc4cf;border-radius:14px;padding:14px}
+.agenda-stat strong{display:block;font-size:22px;color:#c85d79}
+.agenda-calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.agenda-weekday{text-align:center;font-size:12px;font-weight:bold;color:#7d5661;padding:6px}
+.agenda-day{min-height:115px;background:#fff;border:1px solid #ead6db;border-radius:12px;padding:8px;cursor:pointer;transition:.15s}
+.agenda-day:hover{transform:translateY(-1px);box-shadow:0 3px 12px #0001}
+.agenda-day.muted{opacity:.45}
+.agenda-day.today{border:2px solid #c85d79}
+.agenda-day.selected{background:#fff0f4}
+.agenda-day.off{background:#f3eeee}
+.agenda-day-number{font-weight:bold;margin-bottom:6px}
+.agenda-appt{font-size:11px;border-left:3px solid #c85d79;background:#fff6f8;border-radius:7px;padding:5px;margin:4px 0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.agenda-appt.cancelled{opacity:.55;text-decoration:line-through}
+.agenda-detail{margin-top:18px;background:#fff;border:1px solid #ead6db;border-radius:15px;padding:18px}
+.agenda-detail h3{margin-top:0}
+.agenda-row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #eee}
+.agenda-row:last-child{border-bottom:0}
+.agenda-actions{display:flex;flex-wrap:wrap;gap:7px}
+.agenda-actions button{padding:7px 10px;border:0;border-radius:8px;cursor:pointer}
+.agenda-actions .confirm{background:#d9f1df}
+.agenda-actions .cancel{background:#f5d7dc}
+.agenda-actions .delete{background:#eee}
+@media(max-width:800px){
+ .agenda-summary{grid-template-columns:1fr 1fr}
+ .agenda-calendar{gap:4px}
+ .agenda-day{min-height:85px;padding:5px}
+ .agenda-appt{font-size:10px}
+}
+@media(max-width:500px){
+ .agenda-calendar{grid-template-columns:repeat(7,minmax(0,1fr))}
+ .agenda-weekday{font-size:9px}
+ .agenda-day{min-height:62px}
+ .agenda-appt{display:none}
+}
+</style>
 
-<section id="servicos"><h2 class="title">Meus Serviços</h2><p class="sub">Escolha seu serviço e agende seu horário.</p><div id="services" class="services"></div></section>
+</head><body><div class="wrap"><h1>Painel da Ana Silva</h1>
+<div id="loginBox"><div class="box"><h2>Entrar</h2><input id="email" type="email" placeholder="Seu e-mail"><input id="password" type="password" placeholder="Senha"><button onclick="doLogin()">Entrar</button> <button onclick="resetPassword()">Esqueci minha senha</button><p id="msg"></p><small>O primeiro acesso é criado no Supabase Authentication. Depois você entra aqui com seu e-mail e senha.</small></div></div>
+<div id="app" style="display:none"><div class="box"><button onclick="logout()">Sair</button></div>
+<div class="box"><h2>👩‍💼 Minhas informações</h2>
+<p>Esses dados aparecem automaticamente no site das clientes.</p>
+<div style="display:grid;gap:10px;max-width:700px">
+<label>Nome profissional<input id="pname" style="width:100%" placeholder="Ana Silva"></label>
+<label>Descrição profissional<input id="pbio" style="width:100%" placeholder="Lash Designer • Cabeleireira"></label>
+<label>WhatsApp (com DDI + DDD)<input id="pwhatsapp" style="width:100%" placeholder="5511999999999"></label>
+<label>Instagram<input id="pinstagram" style="width:100%" placeholder="@seuinstagram"></label>
+<label>Endereço<input id="paddress" style="width:100%" placeholder="Rua, número"></label>
+<label>Cidade<input id="pcity" style="width:100%" placeholder="Sua cidade"></label>
+<label>Mensagem do WhatsApp<input id="pmessage" style="width:100%" placeholder="Olá! Quero confirmar meu agendamento."></label>
+<button onclick="saveProfile()">Salvar minhas informações</button>
+<p id="profileMsg"></p>
+</div></div>
+<div class="box"><h2>Serviços</h2><div id="services"></div><button onclick="addService()">+ Adicionar serviço</button></div>
+<div class="box"><h2>🕐 Horários</h2><p class="muted">Marque os dias em que você não atende e defina o intervalo entre os horários.</p><div id="hours"></div><div class="row" style="margin-top:12px"><label>Intervalo <select id="slotInterval"><option value="15">15 minutos</option><option value="30">30 minutos</option><option value="60">60 minutos</option></select></label><button onclick="saveHours()">Salvar horários</button></div><p id="hoursMsg"></p></div>
+<div class="box"><h2>🚫 Folgas específicas</h2><p class="muted">Bloqueie uma data sem alterar sua rotina semanal.</p><div class="row"><input id="exceptionDate" type="date"><input id="exceptionReason" placeholder="Motivo (opcional)"><button onclick="addException()">Bloquear data</button></div><div id="exceptions" style="margin-top:10px"></div></div>
+<div class="box help"><h2>❓ Portal de ajuda</h2><details open><summary>Como colocar um dia fixo de folga?</summary><p>Marque “Folga” no dia da semana e salve.</p></details><details><summary>Como bloquear só uma sexta?</summary><p>Escolha a data em “Folgas específicas” e clique em “Bloquear data”.</p></details><details><summary>Como mudar os horários de 30 em 30?</summary><p>Use “Intervalo”. O site monta os horários sem repetir nem sobrepor atendimentos.</p></details><details><summary>Instagram e WhatsApp</summary><p>Preencha em “Minhas informações” e salve. Eles aparecem no site.</p></details></div>
 
-<section id="agendamento"><div class="booking"><div><h2>Agende seu horário</h2><p>Escolha o serviço, dia e horário. A agenda é compartilhada em tempo real.</p><div id="status" class="status"></div></div><form id="form" class="form"><select id="service_id" required><option value="">Escolha o serviço</option></select><input id="date" type="date" required><select id="time" required><option value="">Escolha o horário</option></select><input id="name" placeholder="Seu nome" required><input id="phone" placeholder="Seu WhatsApp" required><button class="btn full" type="submit">Confirmar e chamar no WhatsApp</button></form></div></section>
+<div class="box" id="agendaBox">
+  <h2>📅 Minha Agenda</h2>
+  <p>Veja seus atendimentos por dia e tenha controle da sua semana e do mês.</p>
 
-<section><h2 class="title">Por que escolher Ana Silva?</h2><div class="benefits"><div>💎<strong>Atendimento personalizado</strong></div><div>♡<strong>Cuidado em cada detalhe</strong></div><div>◷<strong>Pontualidade e compromisso</strong></div><div>☆<strong>Resultados que encantam</strong></div></div></section>
-<footer id="contato"><h2>Ana Silva</h2><p>Lash Designer • Cabeleireira</p><p>Agendamento online</p></footer>
+  <div class="agenda-toolbar">
+    <div class="left">
+      <button type="button" onclick="agendaPrevMonth()">‹ Mês anterior</button>
+      <button type="button" onclick="agendaToday()">Hoje</button>
+      <button type="button" onclick="agendaNextMonth()">Próximo mês ›</button>
+    </div>
+    <div class="right">
+      <button type="button" onclick="agendaRefresh()">↻ Atualizar</button>
+    </div>
+  </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const SUPABASE_URL="https://lctoylawyppuimxxqpnz.supabase.co";
-const SUPABASE_KEY="sb_publishable_ABFbLxqTxUidk7OAwWfh9w_NIhqPjfx";
-let db=null;
-let PROFILE={name:"Ana Silva",bio:"Lash Designer • Cabeleireira",whatsapp:"",booking_message:"Olá! Quero confirmar meu agendamento."};
-const statusBox=document.getElementById("status");
+  <div class="agenda-summary">
+    <div class="agenda-stat"><strong id="agendaMonthCount">0</strong><span>Agendamentos no mês</span></div>
+    <div class="agenda-stat"><strong id="agendaTodayCount">0</strong><span>Hoje</span></div>
+    <div class="agenda-stat"><strong id="agendaConfirmedCount">0</strong><span>Confirmados</span></div>
+    <div class="agenda-stat"><strong id="agendaPendingCount">0</strong><span>Pendentes</span></div>
+  </div>
 
-function showStatus(t){statusBox.textContent=t;statusBox.style.display="block"}
-function connect(){if(!window.supabase){showStatus("Erro: o Supabase não carregou. Atualize a página.");return null}if(!db)db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);return db}
-function safe(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+  <h3 class="agenda-title" id="agendaMonthTitle"></h3>
+  <div class="agenda-calendar" id="agendaCalendar"></div>
 
+  <div class="agenda-detail">
+    <h3 id="agendaSelectedTitle">Atendimentos do dia</h3>
+    <div id="agendaSelectedList">Selecione um dia para ver os detalhes.</div>
+  </div>
+</div>
+
+<div class="box"><h2>Agenda compartilhada</h2><div id="bookings"></div></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+const URL="https://lctoylawyppuimxxqpnz.supabase.co",KEY="sb_publishable_ABFbLxqTxUidk7OAwWfh9w_NIhqPjfx";const sb=supabase.createClient(URL,KEY);
+async function doLogin(){
+const emailEl=document.getElementById("email"), passwordEl=document.getElementById("password"), msgEl=document.getElementById("msg");
+const {error}=await sb.auth.signInWithPassword({email:emailEl.value,password:passwordEl.value});
+if(error) msgEl.textContent=error.message; else start();
+}
+async function resetPassword(){let {error}=await sb.auth.resetPasswordForEmail(email.value,{redirectTo:location.origin+location.pathname});msg.textContent=error?error.message:"Se o e-mail existir, você receberá o link para redefinir a senha."}
+async function logout(){await sb.auth.signOut();location.reload()}
+async function start(){let {data:{user}}=await sb.auth.getUser();if(!user)return;document.getElementById("loginBox").style.display="none";document.getElementById("app").style.display="block";loadProfile();render()}
+async function render(){
+ let {data:s}=await sb.from("services").select("*").order("name");services.innerHTML=(s||[]).map(x=>`<div class="grid"><input value="${x.name}" onchange="editService('${x.id}','name',this.value)"><input type="number" value="${x.price??""}" placeholder="Preço" onchange="editService('${x.id}','price',this.value)"><input type="number" value="${x.duration_minutes}" onchange="editService('${x.id}','duration_minutes',this.value)"><input value="${x.description||""}" onchange="editService('${x.id}','description',this.value)"><button onclick="deleteService('${x.id}')">Excluir</button></div>`).join("");
+ const days=["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];let {data:h}=await sb.from("business_hours").select("*").order("weekday");hours.innerHTML=days.map((n,i)=>{let x=(h||[]).find(a=>a.weekday===i)||{open_time:"09:00",close_time:"18:00",is_closed:true};return `<div class="day"><b>${n}</b><input id="a${i}" value="${x.open_time||""}"><input id="b${i}" value="${x.close_time||""}"><label><input id="c${i}" type="checkbox" ${x.is_closed?"checked":""}> Folga</label></div>`}).join("");
+ const ex=await sb.from("schedule_exceptions").select("*").order("exception_date");document.getElementById("exceptions").innerHTML=ex.error?"<span class=\"msg-err\">Execute o setup-supabase-agenda.sql no Supabase.</span>":((ex.data||[]).map(x=>`<div class="booking"><b>${x.exception_date}</b> — ${x.reason||"Folga"} <button class="danger" onclick="removeException('${x.id}')">Remover</button></div>`).join("")||"<span class=\"muted\">Nenhuma folga específica.</span>");
+ let {data:b}=await sb.from("appointments").select("*,services(name)").order("appointment_date",{ascending:true}).order("start_time",{ascending:true});bookings.innerHTML=(b||[]).length?(b||[]).map(x=>`<div class="booking"><b>${x.appointment_date} ${x.start_time.slice(0,5)}</b> — ${x.client_name} — ${x.services?.name||""} — ${x.client_phone} — <b>${x.status}</b> <button onclick="cancelBooking('${x.id}')">Cancelar</button></div>`).join(""):"Nenhum agendamento.";
+}
 async function loadProfile(){
- const c=connect();if(!c)return;
- const r=await c.from("professional_profile").select("*").eq("id",1).maybeSingle();
- if(r.error){console.error(r.error);return}
- if(r.data){PROFILE={...PROFILE,...r.data};document.querySelector(".logo").innerHTML=safe(PROFILE.name)+"<small>"+safe(PROFILE.bio||"")+"</small>";document.querySelector(".hero h1").textContent=PROFILE.name;document.querySelector(".hero h2").textContent=PROFILE.bio||"";document.querySelector("footer h2").textContent=PROFILE.name;document.querySelector("footer p").textContent=PROFILE.bio||""}
+ let {data:p}=await sb.from("professional_profile").select("*").eq("id",1).maybeSingle();
+ if(p){pname.value=p.name||"";pbio.value=p.bio||"";pwhatsapp.value=p.whatsapp||"";pinstagram.value=p.instagram||"";paddress.value=p.address||"";pcity.value=p.city||"";pmessage.value=p.booking_message||"";if(document.getElementById("slotInterval"))slotInterval.value=String(p.slot_interval_minutes||30)}
+}
+async function saveProfile(){
+ let {error}=await sb.from("professional_profile").upsert({
+   id:1,name:pname.value,bio:pbio.value,whatsapp:pwhatsapp.value,instagram:pinstagram.value,
+   address:paddress.value,city:pcity.value,booking_message:pmessage.value,slot_interval_minutes:Number(document.getElementById("slotInterval")?.value||30)
+ },{onConflict:"id"});
+ profileMsg.textContent=error?("Erro: "+error.message):"Informações salvas com sucesso!";
+}
+async function addService(){await sb.from("services").insert({name:"Novo serviço",duration_minutes:60,active:true});render()}
+async function editService(id,k,v){let obj={};obj[k]=k==="price"?Number(v)||null:k==="duration_minutes"?Number(v):v;await sb.from("services").update(obj).eq("id",id)}
+async function deleteService(id){await sb.from("services").update({active:false}).eq("id",id);render()}
+async function saveHours(){for(let i=0;i<7;i++){const r=await sb.from("business_hours").upsert({weekday:i,open_time:document.getElementById("a"+i).value||"09:00",close_time:document.getElementById("b"+i).value||"18:00",is_closed:document.getElementById("c"+i).checked},{onConflict:"weekday"});if(r.error){hoursMsg.textContent="Erro: "+r.error.message;return}}const p=await sb.from("professional_profile").upsert({id:1,slot_interval_minutes:Number(document.getElementById("slotInterval").value||30)},{onConflict:"id"});hoursMsg.textContent=p.error?"Horários salvos, mas o intervalo não foi salvo: "+p.error.message:"Horários salvos com sucesso!";render()}
+async function addException(){const d=document.getElementById("exceptionDate").value;if(!d){alert("Escolha uma data.");return}const r=await sb.from("schedule_exceptions").upsert({exception_date:d,reason:document.getElementById("exceptionReason").value||"Folga"},{onConflict:"exception_date"});if(r.error){alert("Erro: "+r.error.message);return}document.getElementById("exceptionDate").value="";document.getElementById("exceptionReason").value="";render()}
+async function removeException(id){await sb.from("schedule_exceptions").delete().eq("id",id);render()}
+async function cancelBooking(id){await sb.from("appointments").update({status:"cancelled"}).eq("id",id);render()}
+sb.auth.getSession().then(({data:{session}})=>{if(session)start()});
+
+/* ===== AGENDA ORGANIZADA ===== */
+let agendaDate = new Date();
+let agendaSelectedDate = new Date();
+let agendaAppointments = [];
+
+function agendaPad(n){ return String(n).padStart(2,"0"); }
+function agendaDateKey(d){
+  return d.getFullYear()+"-"+agendaPad(d.getMonth()+1)+"-"+agendaPad(d.getDate());
+}
+function agendaMonthName(d){
+  return d.toLocaleDateString("pt-BR",{month:"long",year:"numeric"});
+}
+function agendaDisplayDate(key){
+  const p=key.split("-");
+  return p[2]+"/"+p[1]+"/"+p[0];
+}
+async function agendaLoad(){
+  if(!sb) return;
+  const {data,error}=await sb.from("appointments")
+    .select("*,services(name)")
+    .order("appointment_date",{ascending:true})
+    .order("start_time",{ascending:true});
+  if(error){
+    const el=document.getElementById("agendaSelectedList");
+    if(el) el.textContent="Não foi possível carregar a agenda.";
+    return;
+  }
+  agendaAppointments=data||[];
+  agendaRender();
+}
+function agendaStatus(a){
+  return (a.status||"").toLowerCase();
+}
+function agendaRender(){
+  const cal=document.getElementById("agendaCalendar");
+  const title=document.getElementById("agendaMonthTitle");
+  if(!cal||!title)return;
+  title.textContent=agendaMonthName(agendaDate).replace(/^./,m=>m.toUpperCase());
+
+  const first=new Date(agendaDate.getFullYear(),agendaDate.getMonth(),1);
+  const start=new Date(first);
+  start.setDate(first.getDate()-first.getDay());
+  const today=agendaDateKey(new Date());
+
+  let html=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"].map(d=>`<div class="agenda-weekday">${d}</div>`).join("");
+
+  for(let i=0;i<42;i++){
+    const d=new Date(start);
+    d.setDate(start.getDate()+i);
+    const key=agendaDateKey(d);
+    const muted=d.getMonth()!==agendaDate.getMonth()?" muted":"";
+    const isToday=key===today?" today":"";
+    const isSelected=key===agendaDateKey(agendaSelectedDate)?" selected":"";
+    const isOff=(window.__agendaDaysOff||[]).includes(key)?" off":"";
+    const items=agendaAppointments.filter(a=>a.appointment_date===key && agendaStatus(a)!=="cancelled");
+    const previews=items.slice(0,3).map(a=>{
+      const time=(a.start_time||"").slice(0,5);
+      const name=a.client_name||"Cliente";
+      const svc=a.services?.name||"Serviço";
+      return `<div class="agenda-appt" title="${time} — ${name} — ${svc}">${time} · ${name}</div>`;
+    }).join("");
+    const more=items.length>3?`<div style="font-size:10px;color:#c85d79">+${items.length-3} mais</div>`:"";
+    html+=`<div class="agenda-day${muted}${isToday}${isSelected}${isOff}" onclick="agendaSelectDate('${key}')">
+      <div class="agenda-day-number">${d.getDate()}</div>
+      ${previews}${more}
+      ${isOff?'<div style="font-size:10px;color:#8a6d73">Folga</div>':""}
+    </div>`;
+  }
+  cal.innerHTML=html;
+
+  const monthItems=agendaAppointments.filter(a=>{
+    const p=(a.appointment_date||"").split("-");
+    return Number(p[0])===agendaDate.getFullYear() && Number(p[1])===agendaDate.getMonth()+1;
+  });
+  const todayItems=agendaAppointments.filter(a=>a.appointment_date===today && agendaStatus(a)!=="cancelled");
+  const confirmed=monthItems.filter(a=>["confirmed","confirmado"].includes(agendaStatus(a))).length;
+  const pending=monthItems.filter(a=>["pending","pendente"].includes(agendaStatus(a))).length;
+  document.getElementById("agendaMonthCount").textContent=monthItems.filter(a=>agendaStatus(a)!=="cancelled").length;
+  document.getElementById("agendaTodayCount").textContent=todayItems.length;
+  document.getElementById("agendaConfirmedCount").textContent=confirmed;
+  document.getElementById("agendaPendingCount").textContent=pending;
+  agendaRenderSelected();
+}
+function agendaSelectDate(key){
+  const p=key.split("-").map(Number);
+  agendaSelectedDate=new Date(p[0],p[1]-1,p[2]);
+  agendaRender();
+}
+function agendaRenderSelected(){
+  const key=agendaDateKey(agendaSelectedDate);
+  const title=document.getElementById("agendaSelectedTitle");
+  const list=document.getElementById("agendaSelectedList");
+  if(!title||!list)return;
+  title.textContent="Atendimentos de "+agendaDisplayDate(key);
+  const items=agendaAppointments.filter(a=>a.appointment_date===key)
+    .sort((a,b)=>(a.start_time||"").localeCompare(b.start_time||""));
+  if(!items.length){
+    list.innerHTML='<p>Nenhum atendimento neste dia.</p>';
+    return;
+  }
+  list.innerHTML=items.map(a=>{
+    const status=agendaStatus(a);
+    const label=status==="confirmed"?"Confirmado":status==="pending"?"Pendente":status==="cancelled"?"Cancelado":(a.status||"");
+    const service=a.services?.name||"Serviço";
+    return `<div class="agenda-row">
+      <div>
+        <strong>${(a.start_time||"").slice(0,5)} — ${a.client_name||"Cliente"}</strong><br>
+        <small>${service} · ${a.client_phone||""} · ${label}</small>
+      </div>
+      <div class="agenda-actions">
+        ${status!=="confirmed"&&status!=="cancelled"?`<button class="confirm" onclick="agendaSetStatus('${a.id}','confirmed')">Confirmar</button>`:""}
+        ${status!=="cancelled"?`<button class="cancel" onclick="agendaSetStatus('${a.id}','cancelled')">Cancelar</button>`:""}
+      </div>
+    </div>`;
+  }).join("");
+}
+async function agendaSetStatus(id,status){
+  if(!sb)return;
+  const {error}=await sb.from("appointments").update({status}).eq("id",id);
+  if(error){alert("Não foi possível atualizar o agendamento.");return;}
+  await agendaLoad();
+  if(typeof render==="function") await render();
+}
+function agendaPrevMonth(){agendaDate.setMonth(agendaDate.getMonth()-1);agendaRender();}
+function agendaNextMonth(){agendaDate.setMonth(agendaDate.getMonth()+1);agendaRender();}
+function agendaToday(){agendaDate=new Date();agendaSelectedDate=new Date();agendaRender();}
+async function agendaRefresh(){await agendaLoad();}
+window.agendaLoad=agendaLoad;
+window.agendaRefresh=agendaRefresh;
+window.agendaPrevMonth=agendaPrevMonth;
+window.agendaNextMonth=agendaNextMonth;
+window.agendaToday=agendaToday;
+window.agendaSelectDate=agendaSelectDate;
+window.agendaSetStatus=agendaSetStatus;
+
+/* tenta atualizar a agenda sempre que o painel termina de carregar */
+const __oldStart = window.start;
+if(typeof __oldStart==="function"){
+  window.start = async function(){
+    await __oldStart();
+    await agendaLoad();
+  };
 }
 
-async function loadServices(){
- const c=connect();if(!c)return;
- const r=await c.from("services").select("*").eq("active",true).order("name");
- if(r.error){console.error(r.error);showStatus("Erro ao carregar serviços: "+r.error.message);return}
- const a=r.data||[];
- document.getElementById("services").innerHTML=a.length?a.map(s=>"<div class='card'><div style='font-size:38px'>♡</div><h3>"+safe(s.name)+"</h3><p>"+safe(s.description||"")+"</p>"+(s.price!=null?"<div class='price'>R$ "+Number(s.price).toFixed(2).replace(".",",")+"</div>":"")+"</div>").join(""):"<div class='card'><h3>Nenhum serviço cadastrado</h3></div>";
- document.getElementById("service_id").innerHTML="<option value=''>Escolha o serviço</option>"+a.map(s=>"<option value='"+s.id+"'>"+safe(s.name)+(s.price!=null?" — R$ "+Number(s.price).toFixed(2).replace(".",","):"")+"</option>").join("");
-}
-
-async function loadTimes(){
- const c=connect();if(!c)return;
- const date=document.getElementById("date").value,service=document.getElementById("service_id").value,time=document.getElementById("time");
- time.innerHTML="<option value=''>Escolha o horário</option>";if(!date||!service)return;
- const dow=new Date(date+"T12:00:00").getDay();
- const h=await c.from("business_hours").select("*").eq("weekday",dow).maybeSingle();
- if(h.error){showStatus("Erro ao carregar horários: "+h.error.message);return}
- if(!h.data||h.data.is_closed){time.innerHTML="<option value=''>Dia de folga</option>";return}
- const b=await c.from("appointments").select("start_time").eq("appointment_date",date).neq("status","cancelled");
- if(b.error){showStatus("Erro ao verificar horários: "+b.error.message);return}
- const taken=new Set((b.data||[]).map(x=>String(x.start_time).slice(0,5)));
- const s=await c.from("services").select("duration_minutes").eq("id",service).single();
- const duration=s.data?.duration_minutes||60;
- let [sh,sm]=String(h.data.open_time).split(":").map(Number),[eh,em]=String(h.data.close_time).split(":").map(Number);
- for(let t=sh*60+sm;t+duration<=eh*60+em;t+=30){let v=String(Math.floor(t/60)).padStart(2,"0")+":"+String(t%60).padStart(2,"0");if(!taken.has(v))time.innerHTML+="<option value='"+v+"'>"+v+"</option>"}
-}
-
-document.getElementById("date").min=new Date().toISOString().slice(0,10);
-document.getElementById("date").addEventListener("change",loadTimes);
-document.getElementById("service_id").addEventListener("change",loadTimes);
-
-document.getElementById("form").addEventListener("submit",async e=>{
- e.preventDefault();const c=connect();if(!c)return;
- const service_id=document.getElementById("service_id").value,date=document.getElementById("date").value,time=document.getElementById("time").value,name=document.getElementById("name").value.trim(),phone=document.getElementById("phone").value.trim();
- const s=await c.from("services").select("name,price").eq("id",service_id).single();
- if(s.error){showStatus("Serviço não encontrado.");return}
- const ins=await c.from("appointments").insert({service_id,appointment_date:date,start_time:time,client_name:name,client_phone:phone,status:"confirmed"});
- if(ins.error){console.error(ins.error);showStatus(ins.error.code==="23505"?"Esse horário acabou de ser reservado. Escolha outro.":"Erro ao reservar: "+ins.error.message);await loadTimes();return}
- const number=String(PROFILE.whatsapp||"").replace(/\D/g,"");
- const msg=(PROFILE.booking_message||"Olá! Quero confirmar meu agendamento.")+"\n\nCliente: "+name+"\nServiço: "+s.data.name+"\nData: "+date.split("-").reverse().join("/")+"\nHorário: "+time+"\nWhatsApp: "+phone;
- if(number)window.open("https://wa.me/"+number+"?text="+encodeURIComponent(msg),"_blank");
- showStatus(number?"Horário reservado! O WhatsApp será aberto para você enviar a confirmação.":"Horário reservado! Cadastre o WhatsApp no painel para abrir a conversa automaticamente.");
- e.target.reset();document.getElementById("time").innerHTML="<option value=''>Escolha o horário</option>";
-});
-
-(async()=>{if(connect()){await loadProfile();await loadServices()}})();
-</script>
-</body>
-</html>
+</script></body></html>
