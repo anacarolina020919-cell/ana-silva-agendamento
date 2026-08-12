@@ -107,7 +107,7 @@ const URL="https://lctoylawyppuimxxqpnz.supabase.co",KEY="sb_publishable_ABFbLxq
 async function doLogin(){
 const emailEl=document.getElementById("email"), passwordEl=document.getElementById("password"), msgEl=document.getElementById("msg");
 const {error}=await sb.auth.signInWithPassword({email:emailEl.value,password:passwordEl.value});
-if(error) msgEl.textContent=error.message; else start();
+if(error) msgEl.textContent=error.message; else { await start(); await agendaLoad(); }
 }
 async function resetPassword(){let {error}=await sb.auth.resetPasswordForEmail(email.value,{redirectTo:location.origin+location.pathname});msg.textContent=error?error.message:"Se o e-mail existir, você receberá o link para redefinir a senha."}
 async function logout(){await sb.auth.signOut();location.reload()}
@@ -136,7 +136,7 @@ async function saveHours(){for(let i=0;i<7;i++){const r=await sb.from("business_
 async function addException(){const d=document.getElementById("exceptionDate").value;if(!d){alert("Escolha uma data.");return}const r=await sb.from("schedule_exceptions").upsert({exception_date:d,reason:document.getElementById("exceptionReason").value||"Folga"},{onConflict:"exception_date"});if(r.error){alert("Erro: "+r.error.message);return}document.getElementById("exceptionDate").value="";document.getElementById("exceptionReason").value="";render()}
 async function removeException(id){await sb.from("schedule_exceptions").delete().eq("id",id);render()}
 async function cancelBooking(id){await sb.from("appointments").update({status:"cancelled"}).eq("id",id);render()}
-sb.auth.getSession().then(({data:{session}})=>{if(session)start()});
+sb.auth.getSession().then(async ({data:{session}})=>{if(session){await start(); await agendaLoad();}});
 
 /* ===== AGENDA ORGANIZADA ===== */
 let agendaDate = new Date();
@@ -273,13 +273,5 @@ window.agendaToday=agendaToday;
 window.agendaSelectDate=agendaSelectDate;
 window.agendaSetStatus=agendaSetStatus;
 
-/* tenta atualizar a agenda sempre que o painel termina de carregar */
-const __oldStart = window.start;
-if(typeof __oldStart==="function"){
-  window.start = async function(){
-    await __oldStart();
-    await agendaLoad();
-  };
-}
 
 </script></body></html>
