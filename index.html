@@ -6,76 +6,89 @@
 <style>
 :root{--pink:#e99daf;--rose:#c85d79;--dark:#120c0d;--cream:#fff6f8;--ink:#2b1a20}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;background:var(--cream);color:var(--ink)}
-header{position:sticky;top:0;z-index:20;background:#120c0df5;color:#fff;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{font:italic 30px Georgia;color:#f3a7b8}.logo small{display:block;font:9px Arial;letter-spacing:3px;color:#fff;text-align:center}
-nav a{color:#fff;text-decoration:none;margin:0 9px;font-size:14px}.btn{border:0;border-radius:30px;padding:13px 20px;background:var(--pink);color:#211116;font-weight:700;cursor:pointer;text-decoration:none}
-.hero{min-height:560px;padding:70px 7%;display:flex;align-items:center;background:radial-gradient(circle at 78% 45%,#303030,#100b0c 48%,#080606);color:#fff}.copy{width:55%}.eyebrow{color:#efa8b8;letter-spacing:4px;font-size:12px}.hero h1{font:italic 78px Georgia;color:#f2a5b7;margin:18px 0}.hero h2{font-weight:400;font-size:28px}.hero p{font-size:19px;line-height:1.5}.portrait{width:45%;height:470px;border-radius:250px 250px 20px 20px;background:linear-gradient(145deg,#292929,#050505);display:flex;align-items:center;justify-content:center;box-shadow:0 0 70px #f0a8b81c}.portrait span{font:italic 100px Georgia;color:#f2a5b7}
-section{padding:65px 6%}.title{text-align:center;font:italic 42px Georgia;margin:0 0 8px}.sub{text-align:center;margin:0 0 32px}.services{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:#f8dce3;border:1px solid #efc4cf;border-radius:18px;padding:25px;text-align:center}.card h3{margin:10px 0 6px}.price{font-weight:bold;color:var(--rose)}
+header{position:sticky;top:0;z-index:20;background:#120c0df5;color:#fff;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{font:italic 30px Georgia;color:#f3a7b8}.logo small{display:block;font:9px Arial;letter-spacing:3px;color:#fff;text-align:center}nav a{color:#fff;text-decoration:none;margin:0 9px;font-size:14px}.btn{border:0;border-radius:30px;padding:13px 20px;background:var(--pink);color:#211116;font-weight:700;cursor:pointer;text-decoration:none}
+.hero{min-height:560px;padding:70px 7%;display:flex;align-items:center;background:radial-gradient(circle at 78% 45%,#303030,#100b0c 48%,#080606);color:#fff}.copy{width:55%}.eyebrow{color:#efa8b8;letter-spacing:4px;font-size:12px}.hero h1{font:italic 78px Georgia;color:#f2a5b7;margin:18px 0}.hero h2{font-weight:400;font-size:28px}.hero p{font-size:19px;line-height:1.5}.portrait{width:45%;height:470px;border-radius:250px 250px 20px 20px;background:linear-gradient(145deg,#292929,#050505);display:flex;align-items:center;justify-content:center}.portrait span{font:italic 100px Georgia;color:#f2a5b7}
+section{padding:65px 6%}.title{text-align:center;font:italic 42px Georgia;margin:0 0 8px}.sub{text-align:center;margin:0 0 32px}.services{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{background:#f8dce3;border:1px solid #efc4cf;border-radius:18px;padding:25px;text-align:center}.price{font-weight:bold;color:var(--rose)}
 .booking{background:linear-gradient(135deg,#f3c2ce,#f9e1e6);border-radius:28px;padding:38px;display:grid;grid-template-columns:1fr 1.6fr;gap:35px}.booking h2{font:italic 45px Georgia;margin:0}.form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form input,.form select{width:100%;padding:14px;border:1px solid #ddb3be;border-radius:11px;background:#fff}.full{grid-column:1/-1}.status{padding:12px;border-radius:10px;background:#fff4f6;font-size:13px;display:none}.benefits{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}.benefits div{padding:20px}.benefits strong{display:block;margin-top:9px}footer{background:var(--dark);color:#fff;text-align:center;padding:42px}
 @media(max-width:800px){nav{display:none}.hero{display:block;padding:45px 6%}.copy,.portrait{width:100%}.hero h1{font-size:58px}.portrait{height:330px;margin-top:30px}.services,.benefits{grid-template-columns:1fr 1fr}.booking{grid-template-columns:1fr;padding:25px}}@media(max-width:500px){.services,.benefits{grid-template-columns:1fr}.title{font-size:34px}}
 </style>
 </head>
 <body>
-<header><div class="logo">Ana Silva<small>LASH DESIGNER • CABELEIREIRA</small></div>
-<nav><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#agendamento">Agendamento</a><a href="#contato">Contato</a></nav>
-<a class="btn" href="#agendamento">Agendar horário</a></header>
+<header><div class="logo">Ana Silva<small>LASH DESIGNER • CABELEIREIRA</small></div><nav><a href="#inicio">Início</a><a href="#servicos">Serviços</a><a href="#agendamento">Agendamento</a><a href="#contato">Contato</a></nav><a class="btn" href="#agendamento">Agendar horário</a></header>
+
 <section id="inicio" class="hero"><div class="copy"><div class="eyebrow">BELEZA • AUTOESTIMA • CONFIANÇA</div><h1>Ana Silva</h1><h2>Lash Designer • Cabeleireira</h2><p>Realce ainda mais a sua beleza natural com atendimento personalizado.</p><a class="btn" href="#agendamento">Agendar meu horário</a></div><div class="portrait"><span>AS</span></div></section>
+
 <section id="servicos"><h2 class="title">Meus Serviços</h2><p class="sub">Escolha seu serviço e agende seu horário.</p><div id="services" class="services"></div></section>
-<section id="agendamento"><div class="booking"><div><h2>Agende seu horário</h2><p>Escolha o serviço, dia e horário. A agenda é compartilhada em tempo real.</p><div id="status" class="status"></div></div>
-<form id="form" class="form"><select id="service_id" required><option value="">Escolha o serviço</option></select><input id="date" type="date" required><select id="time" required><option value="">Escolha o horário</option></select><input id="name" placeholder="Seu nome" required><input id="phone" placeholder="Seu WhatsApp" required><button class="btn full" type="submit">Confirmar e chamar no WhatsApp</button></form></div></section>
+
+<section id="agendamento"><div class="booking"><div><h2>Agende seu horário</h2><p>Escolha o serviço, dia e horário. A agenda é compartilhada em tempo real.</p><div id="status" class="status"></div></div><form id="form" class="form"><select id="service_id" required><option value="">Escolha o serviço</option></select><input id="date" type="date" required><select id="time" required><option value="">Escolha o horário</option></select><input id="name" placeholder="Seu nome" required><input id="phone" placeholder="Seu WhatsApp" required><button class="btn full" type="submit">Confirmar e chamar no WhatsApp</button></form></div></section>
+
 <section><h2 class="title">Por que escolher Ana Silva?</h2><div class="benefits"><div>💎<strong>Atendimento personalizado</strong></div><div>♡<strong>Cuidado em cada detalhe</strong></div><div>◷<strong>Pontualidade e compromisso</strong></div><div>☆<strong>Resultados que encantam</strong></div></div></section>
 <footer id="contato"><h2>Ana Silva</h2><p>Lash Designer • Cabeleireira</p><p>Agendamento online</p></footer>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL="https://lctoylawyppuimxxqpnz.supabase.co";
 const SUPABASE_KEY="sb_publishable_ABFbLxqTxUidk7OAwWfh9w_NIhqPjfx";
-let PROFILE={name:"Ana Silva",bio:"Lash Designer • Cabeleireira",whatsapp:"",instagram:"",address:"",city:"",booking_message:"Olá! Quero confirmar meu agendamento."};
-const client=(SUPABASE_URL.startsWith("http")&&SUPABASE_KEY.startsWith("ey"))?supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
+let db=null;
+let PROFILE={name:"Ana Silva",bio:"Lash Designer • Cabeleireira",whatsapp:"",booking_message:"Olá! Quero confirmar meu agendamento."};
 const statusBox=document.getElementById("status");
-function status(t){statusBox.textContent=t;statusBox.style.display="block"}
+
+function showStatus(t){statusBox.textContent=t;statusBox.style.display="block"}
+function connect(){if(!window.supabase){showStatus("Erro: o Supabase não carregou. Atualize a página.");return null}if(!db)db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);return db}
+function safe(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+
 async function loadProfile(){
- if(!client)return;
- const {data}=await client.from("professional_profile").select("*").eq("id",1).maybeSingle();
- if(data){PROFILE=data;
-   document.querySelectorAll(".logo").forEach(x=>{x.innerHTML=`${data.name}<small>${data.bio||""}</small>`});
-   document.querySelector(".hero h1").textContent=data.name;
-   document.querySelector(".hero h2").textContent=data.bio||"";
-   document.querySelector("footer h2").textContent=data.name;
-   document.querySelector("footer p").textContent=data.bio||"";
- }
+ const c=connect();if(!c)return;
+ const r=await c.from("professional_profile").select("*").eq("id",1).maybeSingle();
+ if(r.error){console.error(r.error);return}
+ if(r.data){PROFILE={...PROFILE,...r.data};document.querySelector(".logo").innerHTML=safe(PROFILE.name)+"<small>"+safe(PROFILE.bio||"")+"</small>";document.querySelector(".hero h1").textContent=PROFILE.name;document.querySelector(".hero h2").textContent=PROFILE.bio||"";document.querySelector("footer h2").textContent=PROFILE.name;document.querySelector("footer p").textContent=PROFILE.bio||""}
 }
+
 async function loadServices(){
- if(!client){status("O site está pronto. Falta apenas conectar o banco de dados do Supabase.");return}
- const {data,error}=await client.from("services").select("*").eq("active",true).order("name");
- if(error){status("Não foi possível carregar os serviços.");return}
- document.getElementById("services").innerHTML=data.map(s=>`<div class="card"><div style="font-size:38px">♡</div><h3>${s.name}</h3><p>${s.description||""}</p>${s.price?`<div class="price">R$ ${Number(s.price).toFixed(2).replace(".",",")}</div>`:""}</div>`).join("");
- document.getElementById("service_id").innerHTML='<option value="">Escolha o serviço</option>'+data.map(s=>`<option value="${s.id}">${s.name}${s.price?` — R$ ${Number(s.price).toFixed(2).replace(".",",")}`:""}</option>`).join("");
+ const c=connect();if(!c)return;
+ const r=await c.from("services").select("*").eq("active",true).order("name");
+ if(r.error){console.error(r.error);showStatus("Erro ao carregar serviços: "+r.error.message);return}
+ const a=r.data||[];
+ document.getElementById("services").innerHTML=a.length?a.map(s=>"<div class='card'><div style='font-size:38px'>♡</div><h3>"+safe(s.name)+"</h3><p>"+safe(s.description||"")+"</p>"+(s.price!=null?"<div class='price'>R$ "+Number(s.price).toFixed(2).replace(".",",")+"</div>":"")+"</div>").join(""):"<div class='card'><h3>Nenhum serviço cadastrado</h3></div>";
+ document.getElementById("service_id").innerHTML="<option value=''>Escolha o serviço</option>"+a.map(s=>"<option value='"+s.id+"'>"+safe(s.name)+(s.price!=null?" — R$ "+Number(s.price).toFixed(2).replace(".",","):"")+"</option>").join("");
 }
+
 async function loadTimes(){
- const date=document.getElementById("date").value, service=document.getElementById("service_id").value, time=document.getElementById("time");
- time.innerHTML='<option value="">Escolha o horário</option>'; if(!date||!service||!client)return;
+ const c=connect();if(!c)return;
+ const date=document.getElementById("date").value,service=document.getElementById("service_id").value,time=document.getElementById("time");
+ time.innerHTML="<option value=''>Escolha o horário</option>";if(!date||!service)return;
  const dow=new Date(date+"T12:00:00").getDay();
- const {data:hours}=await client.from("business_hours").select("*").eq("weekday",dow).maybeSingle();
- if(!hours||hours.is_closed)return;
- const {data:booked}=await client.from("appointments").select("start_time").eq("appointment_date",date).neq("status","cancelled");
- const taken=new Set((booked||[]).map(x=>x.start_time.slice(0,5)));
- const {data:s}=await client.from("services").select("duration_minutes").eq("id",service).single();
- const duration=s?.duration_minutes||60;
- let [sh,sm]=hours.open_time.split(":").map(Number), [eh,em]=hours.close_time.split(":").map(Number);
- for(let t=sh*60+sm;t+duration<=eh*60+em;t+=30){let v=String(Math.floor(t/60)).padStart(2,"0")+":"+String(t%60).padStart(2,"0");if(!taken.has(v))time.innerHTML+=`<option value="${v}">${v}</option>`}
+ const h=await c.from("business_hours").select("*").eq("weekday",dow).maybeSingle();
+ if(h.error){showStatus("Erro ao carregar horários: "+h.error.message);return}
+ if(!h.data||h.data.is_closed){time.innerHTML="<option value=''>Dia de folga</option>";return}
+ const b=await c.from("appointments").select("start_time").eq("appointment_date",date).neq("status","cancelled");
+ if(b.error){showStatus("Erro ao verificar horários: "+b.error.message);return}
+ const taken=new Set((b.data||[]).map(x=>String(x.start_time).slice(0,5)));
+ const s=await c.from("services").select("duration_minutes").eq("id",service).single();
+ const duration=s.data?.duration_minutes||60;
+ let [sh,sm]=String(h.data.open_time).split(":").map(Number),[eh,em]=String(h.data.close_time).split(":").map(Number);
+ for(let t=sh*60+sm;t+duration<=eh*60+em;t+=30){let v=String(Math.floor(t/60)).padStart(2,"0")+":"+String(t%60).padStart(2,"0");if(!taken.has(v))time.innerHTML+="<option value='"+v+"'>"+v+"</option>"}
 }
+
 document.getElementById("date").min=new Date().toISOString().slice(0,10);
-document.getElementById("date").addEventListener("change",loadTimes);document.getElementById("service_id").addEventListener("change",loadTimes);
+document.getElementById("date").addEventListener("change",loadTimes);
+document.getElementById("service_id").addEventListener("change",loadTimes);
+
 document.getElementById("form").addEventListener("submit",async e=>{
- e.preventDefault();if(!client){status("Configure o Supabase no arquivo index.html antes de usar.");return}
- const serviceId=document.getElementById("service_id").value, date=document.getElementById("date").value,time=document.getElementById("time").value,name=document.getElementById("name").value,phone=document.getElementById("phone").value;
- const {data:s}=await client.from("services").select("name,price").eq("id",serviceId).single();
- const {error}=await client.from("appointments").insert({service_id:serviceId,appointment_date:date,start_time:time,client_name:name,client_phone:phone,status:"confirmed"});
- if(error){status(error.code==="23505"?"Esse horário acabou de ser reservado. Escolha outro.":"Não foi possível reservar o horário.");await loadTimes();return}
- const msg=`${encodeURIComponent(PROFILE.booking_message||"Olá! Quero confirmar meu agendamento.")}%0A%0ACliente: ${encodeURIComponent(name)}%0AServiço: ${encodeURIComponent(s.name)}%0AData: ${date.split("-").reverse().join("/")} %0AHorário: ${time}%0AWhatsApp: ${encodeURIComponent(phone)}`;
- window.open(`https://wa.me/${String(PROFILE.whatsapp||"").replace(/\D/g,"")}?text=${msg}`,"_blank");
- status("Horário reservado! O WhatsApp será aberto para você enviar a confirmação.");
- e.target.reset();document.getElementById("time").innerHTML='<option value="">Escolha o horário</option>';
+ e.preventDefault();const c=connect();if(!c)return;
+ const service_id=document.getElementById("service_id").value,date=document.getElementById("date").value,time=document.getElementById("time").value,name=document.getElementById("name").value.trim(),phone=document.getElementById("phone").value.trim();
+ const s=await c.from("services").select("name,price").eq("id",service_id).single();
+ if(s.error){showStatus("Serviço não encontrado.");return}
+ const ins=await c.from("appointments").insert({service_id,appointment_date:date,start_time:time,client_name:name,client_phone:phone,status:"confirmed"});
+ if(ins.error){console.error(ins.error);showStatus(ins.error.code==="23505"?"Esse horário acabou de ser reservado. Escolha outro.":"Erro ao reservar: "+ins.error.message);await loadTimes();return}
+ const number=String(PROFILE.whatsapp||"").replace(/\D/g,"");
+ const msg=(PROFILE.booking_message||"Olá! Quero confirmar meu agendamento.")+"\n\nCliente: "+name+"\nServiço: "+s.data.name+"\nData: "+date.split("-").reverse().join("/")+"\nHorário: "+time+"\nWhatsApp: "+phone;
+ if(number)window.open("https://wa.me/"+number+"?text="+encodeURIComponent(msg),"_blank");
+ showStatus(number?"Horário reservado! O WhatsApp será aberto para você enviar a confirmação.":"Horário reservado! Cadastre o WhatsApp no painel para abrir a conversa automaticamente.");
+ e.target.reset();document.getElementById("time").innerHTML="<option value=''>Escolha o horário</option>";
 });
-loadProfile();loadServices();
+
+(async()=>{if(connect()){await loadProfile();await loadServices()}})();
 </script>
-</body></html>
+</body>
+</html>
