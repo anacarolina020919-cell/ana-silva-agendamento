@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Painel Ana Silva</title>
+<style>
+body{font-family:Arial;margin:0;background:#fff6f8;color:#2b1a20}.wrap{max-width:1100px;margin:auto;padding:25px}.box{background:#fff;padding:22px;border-radius:18px;margin:16px 0;box-shadow:0 5px 25px #0001}input,select,button{padding:11px;border:1px solid #dcb5bf;border-radius:9px}button{background:#c85d79;color:#fff;border:0;cursor:pointer}.grid{display:grid;grid-template-columns:2fr 1fr 1fr 2fr auto;gap:8px;margin:8px 0}.day{display:grid;grid-template-columns:120px 1fr 1fr auto;gap:8px;margin:8px 0}.booking{padding:11px;border-bottom:1px solid #eee}@media(max-width:700px){.grid,.day{grid-template-columns:1fr}}
+</style></head><body><div class="wrap"><h1>Painel da Ana Silva</h1>
+<div id="loginBox"><div class="box"><h2>Entrar</h2><form id="loginForm"><input id="email" type="email" placeholder="Seu e-mail" required><input id="password" type="password" placeholder="Senha" required><button type="submit">Entrar</button></form> <button onclick="resetPassword()">Esqueci minha senha</button><p id="msg"></p><small>O primeiro acesso é criado no Supabase Authentication. Depois você entra aqui com seu e-mail e senha.</small></div></div>
+<div id="app" style="display:none"><div class="box"><button onclick="logout()">Sair</button></div>
+<div class="box"><h2>👩‍💼 Minhas informações</h2>
+<p>Esses dados aparecem automaticamente no site das clientes.</p>
+<div style="display:grid;gap:10px;max-width:700px">
+<label>Nome profissional<input id="pname" style="width:100%" placeholder="Ana Silva"></label>
+<label>Descrição profissional<input id="pbio" style="width:100%" placeholder="Lash Designer • Cabeleireira"></label>
+<label>WhatsApp (com DDI + DDD)<input id="pwhatsapp" style="width:100%" placeholder="5511999999999"></label>
+<label>Instagram<input id="pinstagram" style="width:100%" placeholder="@seuinstagram"></label>
+<label>Endereço<input id="paddress" style="width:100%" placeholder="Rua, número"></label>
+<label>Cidade<input id="pcity" style="width:100%" placeholder="Sua cidade"></label>
+<label>Mensagem do WhatsApp<input id="pmessage" style="width:100%" placeholder="Olá! Quero confirmar meu agendamento."></label>
+<button onclick="saveProfile()">Salvar minhas informações</button>
+<p id="profileMsg"></p>
+</div></div>
+<div class="box"><h2>Serviços</h2><div id="services"></div><button onclick="addService()">+ Adicionar serviço</button></div>
+<div class="box"><h2>Horários</h2><div id="hours"></div><button onclick="saveHours()">Salvar horários</button></div>
+<div class="box"><h2>Agenda compartilhada</h2><div id="bookings"></div></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+const URL="https://lctoylawyppuimxxqpnz.supabase.co",KEY="sb_publishable_ABFbLxqTxUidk7OAwWfh9w_NIhqPjfx";const sb=supabase.createClient(URL,KEY);
+async function doLogin(){
+const emailEl=document.getElementById("email"), passwordEl=document.getElementById("password"), msgEl=document.getElementById("msg");
+msgEl.textContent="Entrando...";
+try{
+ const {error}=await sb.auth.signInWithPassword({email:emailEl.value.trim(),password:passwordEl.value});
+ if(error){msgEl.textContent="Erro ao entrar: "+error.message; return;}
+ await start();
+}catch(e){msgEl.textContent="Erro de conexão: "+(e?.message||e);}
+}
+document.getElementById("loginForm").addEventListener("submit",e=>{e.preventDefault();doLogin();});
+async function resetPassword(){let {error}=await sb.auth.resetPasswordForEmail(email.value,{redirectTo:location.origin+location.pathname});msg.textContent=error?error.message:"Se o e-mail existir, você receberá o link para redefinir a senha."}
+async function logout(){await sb.auth.signOut();location.reload()}
+async function start(){let {data:{user}}=await sb.auth.getUser();if(!user)return;document.getElementById("loginBox").style.display="none";document.getElementById("app").style.display="block";loadProfile();render()}
+async function render(){
+ let {data:s}=await sb.from("services").select("*").order("name");services.innerHTML=(s||[]).map(x=>`<div class="grid"><input value="${x.name}" onchange="editService('${x.id}','name',this.value)"><input type="number" value="${x.price??""}" placeholder="Preço" onchange="editService('${x.id}','price',this.value)"><input type="number" value="${x.duration_minutes}" onchange="editService('${x.id}','duration_minutes',this.value)"><input value="${x.description||""}" onchange="editService('${x.id}','description',this.value)"><button onclick="deleteService('${x.id}')">Excluir</button></div>`).join("");
+ const days=["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];let {data:h}=await sb.from("business_hours").select("*").order("weekday");hours.innerHTML=days.map((n,i)=>{let x=(h||[]).find(a=>a.weekday===i)||{open_time:"09:00",close_time:"18:00",is_closed:true};return `<div class="day"><b>${n}</b><input id="a${i}" value="${x.open_time||""}"><input id="b${i}" value="${x.close_time||""}"><label><input id="c${i}" type="checkbox" ${x.is_closed?"checked":""}> Folga</label></div>`}).join("");
+ let {data:b}=await sb.from("appointments").select("*,services(name)").order("appointment_date",{ascending:true}).order("start_time",{ascending:true});bookings.innerHTML=(b||[]).length?(b||[]).map(x=>`<div class="booking"><b>${x.appointment_date} ${x.start_time.slice(0,5)}</b> — ${x.client_name} — ${x.services?.name||""} — ${x.client_phone} — <b>${x.status}</b> <button onclick="cancelBooking('${x.id}')">Cancelar</button></div>`).join(""):"Nenhum agendamento.";
+}
+async function loadProfile(){
+ let {data:p}=await sb.from("professional_profile").select("*").eq("id",1).maybeSingle();
+ if(p){pname.value=p.name||"";pbio.value=p.bio||"";pwhatsapp.value=p.whatsapp||"";pinstagram.value=p.instagram||"";paddress.value=p.address||"";pcity.value=p.city||"";pmessage.value=p.booking_message||""}
+}
+async function saveProfile(){
+ let {error}=await sb.from("professional_profile").upsert({
+   id:1,name:pname.value,bio:pbio.value,whatsapp:pwhatsapp.value,instagram:pinstagram.value,
+   address:paddress.value,city:pcity.value,booking_message:pmessage.value
+ },{onConflict:"id"});
+ profileMsg.textContent=error?("Erro: "+error.message):"Informações salvas com sucesso!";
+}
+async function addService(){await sb.from("services").insert({name:"Novo serviço",duration_minutes:60,active:true});render()}
+async function editService(id,k,v){let obj={};obj[k]=k==="price"?Number(v)||null:k==="duration_minutes"?Number(v):v;await sb.from("services").update(obj).eq("id",id)}
+async function deleteService(id){await sb.from("services").update({active:false}).eq("id",id);render()}
+async function saveHours(){for(let i=0;i<7;i++){await sb.from("business_hours").upsert({weekday:i,open_time:document.getElementById("a"+i).value||"09:00",close_time:document.getElementById("b"+i).value||"18:00",is_closed:document.getElementById("c"+i).checked},{onConflict:"weekday"})}alert("Horários salvos!");render()}
+async function cancelBooking(id){await sb.from("appointments").update({status:"cancelled"}).eq("id",id);render()}
+sb.auth.getSession().then(({data:{session}})=>{if(session)start()});
+</script></body></html>
